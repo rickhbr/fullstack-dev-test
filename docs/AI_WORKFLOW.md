@@ -122,8 +122,9 @@ What I changed, and why. These are the real ones, not a representative sample:
   `gemini-2.0-flash`, which Google stopped serving in June 2026. Nothing in the code or the tests
   could catch it: with a real key every call would have degraded to `upstream_error` and the
   fallback would have quietly masked it. Found by checking the provider's deprecation table against
-  the id, which is now the habit: a model id is configuration with an expiry date, and the README
-  says how to list what a key can actually reach.
+  the id. The first replacement, `gemini-2.5-flash-lite`, then turned out to be closed to new
+  accounts, which only a real call with a real key revealed. A model id is configuration with an
+  expiry date, and the README says how to list what a key can actually reach.
 
 - **`.env` was documented and never loaded.** The README said `cp .env.example .env`, the code
   read `process.env`, and nothing connected the two. Found by following the run instructions

@@ -59,7 +59,7 @@ path is demonstrated without having to break anything.
 The API loads `.env` itself at start-up (`process.loadEnvFile`, no dependency); real environment
 variables take precedence over the file. With a key in place `/health` answers `"llm": "configured"`.
 
-`GEMINI_MODEL` defaults to `gemini-2.5-flash-lite`. Google retires model ids on a schedule — the
+`GEMINI_MODEL` defaults to `gemini-3.5-flash-lite`. Google retires model ids on a schedule — the
 2.0 Flash ids stopped serving in June 2026 — so if every response degrades with `upstream_error` on
 a fresh key, check which ids the key can see and set one of them:
 
@@ -130,7 +130,7 @@ flowchart LR
         UC --> FB
     end
 
-    LLM["Gemini<br/>2.5 Flash-Lite"]
+    LLM["Gemini<br/>3.5 Flash-Lite"]
 
     API -->|"POST /v1/suggestions"| HTTP
     UC -->|"prompt + 8s budget"| LLM
@@ -203,7 +203,7 @@ package (`http`).
     "occasion": "birthday",     // normalised — what the model and the cache key actually saw
     "relationship": "friend",
     "locale": "en",
-    "model": "gemini-2.5-flash-lite",
+    "model": "gemini-3.5-flash-lite",
     "promptVersion": "v1",
     "latencyMs": 812
   }
@@ -371,7 +371,7 @@ Other levers, roughly in order of what they are worth:
 | --- | --- |
 | Pool cache on a low-cardinality key | the largest single reduction; a warm pool costs nothing |
 | Precompute the top ~50 pairs offline, nightly | the common path never touches the model at request time |
-| Small model (Gemini 2.5 Flash-Lite) + `maxOutputTokens: 400` | roughly 350 in / 150 out per call, so the cost ceiling per call is fixed |
+| Small model (Gemini 3.5 Flash-Lite) + `maxOutputTokens: 400` | roughly 350 in / 150 out per call, so the cost ceiling per call is fixed |
 | JSON schema response | no reprompt-on-parse-failure, which is a hidden multiplier |
 | Single bounded retry | stops a provider incident from multiplying spend |
 | Daily call budget | a hard ceiling, independent of every heuristic above |

@@ -49,7 +49,7 @@ export function loadConfig(): AppConfig {
     logLevel: process.env.LOG_LEVEL ?? 'info',
     trustProxy: readBool('TRUST_PROXY', false),
     geminiApiKey: process.env.GEMINI_API_KEY?.trim() ?? '',
-    geminiModel: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash-lite',
+    geminiModel: process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite',
     llmTimeoutMs: readInt('LLM_TIMEOUT_MS', 8000),
     llmMaxRetries: readInt('LLM_MAX_RETRIES', 1),
     rateLimitMax: readInt('RATE_LIMIT_MAX', 30),
